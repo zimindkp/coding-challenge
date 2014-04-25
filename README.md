@@ -17,7 +17,7 @@ Create a portfolio rebalancing module. Each WealthSimple customer has a portfoli
 | AAPL   | 30%               | 29.92%            | 136          | $22         |
 | TSLA   | 10%               | 19.12%            | 239          | $8          |
 
-The job of the rebalancer is to buy or sell shares to bring the actual allocation of investments as close as possible to the target allocations.
+The job of the rebalancing module is to buy or sell shares to bring the actual allocation of investments as close as possible to the target allocations.
 
 This program should not have any UI. It should take in the current state of investments and target allocations as inputs, and output the set of buys and sells necessary to rebalance these investments (e.g `buy 9 shares of GOOG, sell 114 shares of TSLA`).
 
