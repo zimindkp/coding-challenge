@@ -23,11 +23,11 @@ This program should not have any UI. It should take in the current state of inve
 
 ## Technical spec
 
-Here are some technologies we are more familiar with -- feel free to use any to complete the challenge:
+Here are some languages we use at WealthSimple -- feel free to use any to complete the challenge:
 
 * Ruby (our web backend is written in Ruby)
 * Java (our trade execution code is written in Java)
-* JavaScript (our web frontend uses JavaScript)
+* CoffeeScript/JavaScript (our web frontend uses CoffeeScript)
 
 ## How we review
 
