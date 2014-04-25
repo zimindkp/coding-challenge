@@ -4,8 +4,8 @@ Here is a sample project that will give us some insight into your current level 
 
 This is a simple project, but organize, design, test and document your code as if it were going into production. Write your README as if it was for a production service, and include the following items:
 
-* Reasoning behind your technical choices (and level of experience with those)
-* Trade-offs you might have made, anything you left out, or what you might do differently if you were to spend additional time on the project
+* Reasoning behind your technical choices
+* Trade-offs you might have made, or what you might do differently if you were to spend additional time on the project
 
 ## Functional spec
 
@@ -23,7 +23,7 @@ Here are some technologies we are more familiar with -- feel free to use any of 
 
 The aspects of your code we will judge include:
 
-* Functionality: Does the application do what was asked? If there is anything missing, does the README explain why it is missing?
-* Code quality: Is the code simple, easy to understand, and maintainable? Are there any code smells or other red flags?
+* Functionality: Does the application do what was asked?
+* Code quality: Is the code simple, easy to understand, and maintainable?
 * Testing: How thorough are the automated tests? Will they be difficult to change if the requirements of the application were to change?
-* Technical choices: Do choices of libraries, testing frameworks, etc. seem appropriate for the chosen application?
+* Technical choices: Do choices of libraries, frameworks, etc. seem appropriate for the chosen application?
