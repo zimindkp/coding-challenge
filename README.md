@@ -1,15 +1,25 @@
-# Coding Challenge
+README
 
-Here is a sample project that will give us some insight into your current level of experience.
+included:
+All source files (.rb, .csv, .txt)
+this README
+Sample data
+Output text file on sample data
 
-This is a simple project, but organize, design, test and document your code as if it were going into production. Write your README as if it was for a production service, and include the following items:
+-------------------------------------------------------------------------------------------------------------
+Rebalancer
+-------------------------------------------------------------------------------------------------------------
 
-* Reasoning behind your technical choices
-* Trade-offs you might have made, or what you might do differently if you were to spend additional time on the project
+This is a simple Ruby program that rebalances a current portfolio of shares to meet target allocation requirements. 
+A portfolio is input to the program and the set of transactions required to reach our goals is output. Since there is no UI needed, the foremost language to use in this case was Ruby on its Rails framework.
 
-## Functional spec
+Ruby is a versatile language that allows a large amount of freedom on the use of various data in programs. With the Rails framework, one could accomplish more with less, better structured code. Since the code can be re-used, changes are easy, making iteration and experimentation painless.
+There was also the fact that I was more comfortable with Ruby because of prior experience in PHP programming. For our purposes, a simple manipulation of data from a table and single output was all that was required so Ruby was a good fit. 
 
-Create a portfolio rebalancing module. Each WealthSimple customer has a portfolio with a set of investments along with target allocations for these investments. However, as share prices fluctuate, the actual allocations of investments may diverge from the target allocations. For example:
+--------------------------------------------------------------------------------------------------------------
+Installation and Use
+--------------------------------------------------------------------------------------------------------------
+Each WealthSimple customer has a portfolio with a set of investments along with target allocations for these investments. However, as share prices fluctuate, the actual allocations of investments may diverge from the target allocations. For example:
 
 | Ticker | Target allocation | Actual allocation | Shares owned | Share price |
 |--------|-------------------|-------------------|--------------|-------------|
@@ -17,23 +27,79 @@ Create a portfolio rebalancing module. Each WealthSimple customer has a portfoli
 | AAPL   | 30%               | 29.92%            | 136          | $22         |
 | TSLA   | 10%               | 19.12%            | 239          | $8          |
 
-The job of the rebalancing module is to buy or sell shares to bring the actual allocation of investments as close as possible to the target allocations.
+The job of the rebalancing module is to buy or sell shares to bring the actual allocation of investments as close as possible to the target allocations. Included with the program is a sample input data in csv format that contains the information above
 
-This program should not have any UI. It should take in the current state of investments and target allocations as inputs, and output the set of buys and sells necessary to rebalance these investments (e.g `buy 9 shares of GOOG, sell 114 shares of TSLA`).
+For a complete list of ways to install Ruby, including using third party tools like rvm, see: You may also need the DevKit which can be downloaded here too.
 
-## Technical spec
+http://www.ruby-lang.org/en/downloads/
+https://forwardhq.com/support/installing-ruby-windows
 
-Here are some languages we use at WealthSimple -- feel free to use any to complete the challenge:
+The Ruby distribution files can be found in the following FTP site:
 
-* Ruby (our web backend is written in Ruby)
-* Java (our trade execution code is written in Java)
-* CoffeeScript/JavaScript (our web frontend uses CoffeeScript)
+ftp://ftp.ruby-lang.org/pub/ruby/
 
-## How we review
+You may also need the DevKit which can be downloaded here too.
+Once you have Ruby up and running on your machine, you can then run the program, bearing in mind that you may have to change the working directory to one where the files are kept.
+In order to run the program please run the following command in the Ruby command window:
 
-The aspects of your code we will judge include:
+$ruby Rebalancer.rb [name of file here]
 
-* Functionality: Does the application do what was asked?
-* Code quality: Is the code simple, easy to understand, and maintainable?
-* Testing: How thorough are the automated tests? Will they be difficult to change if the requirements of the application were to change?
-* Technical choices: Do choices of libraries, frameworks, etc. seem appropriate for the chosen application?
+For example:
+$ruby Rebalancer.rb data.csv
+
+A set of transactions will then be output that shows the necessary purchases or sales of shares needed to meet the targets.
+
+-------------------------------------------------------------------------------------------------------------
+Limitations
+-------------------------------------------------------------------------------------------------------------
+Bearing in mind we are dealing with portfolios, the assumption was made that the data input to the program would be in a tabular format, more often than not in a csv format. This was the underlying assumption made when the program was being written as shall be discussed below.
+
+The use of the CSV gem was most vital in this program in order to easily convert the data into a more manageable format as an array of hashes. If this was a false assumption, or the testing bed did not have the files required, it is just a matter of modifying the temporary storage of the input data. For example, if our data was in another format, we may read in the file using the following piece of code:
+
+input_record_separator  = "\n"
+field_separator         = ','
+filename = ARGV[0]
+File.open(filename, 'r+') do |f|
+
+# Read the entire contents of the file in question
+# in an input array.
+input = f.readlines(input_record_separator)
+
+# Loop over all the lines in the file with a counter
+input.each_with_index do |last_read_line, i|
+
+# Remove the ending newline from the line for easier
+# processing.
+last_read_line.chomp!(input_record_separator)
+
+# Extract all fields in this record.
+fields = last_read_line.split(field_separator)
+
+#each row is input as an array, from which we can extract the data required.
+
+row1=Stocks.new(fields[0], fields[1], fields[2], fields[3],fields[4])
+
+#from here we can easily obtain the data to calculate the total amount and shares required
+#.....	
+ end
+  f.flush
+end
+
+Now if the testing bed did not have the required files, in particular the "csv.rb" file, one could simply install the gem from the Ruby command window:
+
+$gem install csv
+
+The time line given to complete was adequate to create a fully functional program, but if there was to be more time and/or resources spent on it, I would incorporate a wider range of data input and ruser input for real time manipulation of data. I would also have created a database that contained the portfolio to easily access the data and not have to use temporary structures in coding. This would also save some processing memory.
+
+-------------------------------------------------------------------------------------------------------------
+Contacts
+-------------------------------------------------------------------------------------------------------------
+For more information regarding deployment and compiling, please contact me at
+
+	parekhk@uwindsor.ca
+
+Or visit my GitHub page at:
+
+https://github.com/zimindkp
+
+
