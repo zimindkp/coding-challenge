@@ -24,16 +24,16 @@ def calculate(a,b)
 end
 
 require 'csv'
-#This is the most important gem I have used, underlying the assumption I'll be able to use a csv file.
+#This is the most important gem used, underlying the assumption the data format will be in csv or similar
 filename = ARGV[0]
-#I have also assumed there will be a file on hand to use with adequate data.
+#An assumption is made that there will be a file on hand to use with adequate data.
 stocks = {}
 #Initialising the hash array
 
 CSV.foreach(filename, :headers => true, :header_converters => :symbol, :converters => :all) do |row|
   stocks[row.fields[0]] = Hash[row.headers[1..-1].zip(row.fields[1..-1])]
 end
-#In the above code I have utilised the CSV gem's method to obtain data from a file and convert it into an array of hashes.
+#The CSV gem's method has been used to obtain data from a file and convert it into an array of hashes.
 #If needed, we can forgo the use of the CSV gem and hard code according to different formats. It is easily customisable.
 #If the csv file has no headers then we can add our own headers and modify the code above.
 
@@ -48,12 +48,12 @@ end
 #At this stage, one should know the headings of the file and modify if needed.
 
 stocks.each do |key, value|
-#Since I have used an array of hashes, I use a key value pair to access each element
+#Since we have used an array of hashes, a key value pair is used to access each element
 	y = value[:target]*0.01*sum/value[:price]
 	x = value[:share]
-#From the above, I calculate the required number of shares to reach the target goal for that company
+#From the above, the required number of shares to reach the target goal for that company is calculated
 	d= calculate(y,x)
-#I call the method in the beginning to obtain information on whether to sell, buy or leave the shares as is.
+#The method in the beginning is called to obtain information on whether to sell, buy or leave the shares as is.
 	if(d!=0)
 		print "%s shares of %s. "  % [d, key]
 #The results are printed out on standard output.
