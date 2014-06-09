@@ -1,0 +1,28 @@
+input_record_separator  = "\n"
+field_separator         = ','
+filename = ARGV[0]
+File.open(filename, 'r+') do |f|
+
+# Read the entire contents of the file in question
+# in an input array.
+input = f.readlines(input_record_separator)
+
+# Loop over all the lines in the file with a counter
+input.each_with_index do |last_read_line, i|
+
+# Remove the ending newline from the line for easier
+# processing.
+last_read_line.chomp!(input_record_separator)
+
+# Extract all fields in this record.
+fields = last_read_line.split(field_separator)
+
+#each row is input as an array, from which we can extract the data required.
+
+row1=Stocks.new(fields[0], fields[1], fields[2], fields[3],fields[4])
+
+#from here we can easily obtain the data to calculate the total amount and shares required
+#.....	
+ end
+  f.flush
+end
