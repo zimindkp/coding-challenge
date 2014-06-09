@@ -54,36 +54,7 @@ Limitations
 -------------------------------------------------------------------------------------------------------------
 Bearing in mind we are dealing with portfolios, the assumption was made that the data input to the program would be in a tabular format, more often than not in a csv format. This was the underlying assumption made when the program was being written as shall be discussed below.
 
-The use of the CSV gem was most vital in this program in order to easily convert the data into a more manageable format as an array of hashes. If this was a false assumption, or the testing bed did not have the files required, it is just a matter of modifying the temporary storage of the input data. For example, if our data was in another format, we may read in the file using the following piece of code:
-
-input_record_separator  = "\n"
-field_separator         = ','
-filename = ARGV[0]
-File.open(filename, 'r+') do |f|
-
-# Read the entire contents of the file in question
-# in an input array.
-input = f.readlines(input_record_separator)
-
-# Loop over all the lines in the file with a counter
-input.each_with_index do |last_read_line, i|
-
-# Remove the ending newline from the line for easier
-# processing.
-last_read_line.chomp!(input_record_separator)
-
-# Extract all fields in this record.
-fields = last_read_line.split(field_separator)
-
-#each row is input as an array, from which we can extract the data required.
-
-row1=Stocks.new(fields[0], fields[1], fields[2], fields[3],fields[4])
-
-#from here we can easily obtain the data to calculate the total amount and shares required
-#.....	
- end
-  f.flush
-end
+The use of the CSV gem was most vital in this program in order to easily convert the data into a more manageable format as an array of hashes. If this was a false assumption, or the testing bed did not have the files required, it is just a matter of modifying the temporary storage of the input data. For example, if our data was in another format, we may read in the file using piece of code that's included named as "fileread.txt".
 
 Now if the testing bed did not have the required files, in particular the "csv.rb" file, one could simply install the gem from the Ruby command window:
 
